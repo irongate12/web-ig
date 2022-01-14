@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: 
+Crawl-delay: 5
+Disallow: /
+Disallow: /php_helpers/
