@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\httpdocs"
+    "\\httpdocs",
+    "\\httpdocs\\images"
   ],
-  "SelectedNode": "\\httpdocs\\servicios.html",
+  "SelectedNode": "\\httpdocs\\images",
   "PreviewInSolutionExplorer": false
 }
