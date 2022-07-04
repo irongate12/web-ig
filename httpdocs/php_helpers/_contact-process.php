@@ -9,12 +9,6 @@ if('POST' != $method) {
 define('GR_SECRET', '6LfL2q4UAAAAABTqw2pd8W6d_kCCIKyXgh-xvwM4');
 define('GR_URL', 'https://www.google.com/recaptcha/api/siteverify');
 
-
-// Configuration option.
-// Enter the email address that you want to emails to be sent to.
-// Example $address = "john.doe@yourdomain.com";
-$address = "comercial@igelephant.com";
-
 function validateRecaptcha( $secret, $response, $url = GR_URL ){
 	$ch = curl_init($url);
 	curl_setopt($ch, CURLOPT_POST, 1);
@@ -94,8 +88,25 @@ $headers .= "MIME-Version: 1.0" . PHP_EOL;
 $headers .= "Content-type: text/plain; charset=utf-8" . PHP_EOL;
 $headers .= "Content-Transfer-Encoding: quoted-printable" . PHP_EOL;
 
+// Configuration option.
+// Enter the email address that you want to emails to be sent to.
+// Example $address = "john.doe@yourdomain.com";
+$address = "info@igelephant.com";
+$enviado = 0
 
 if(mail($address, $subject, $msg, $headers)) {
+	$enviado=1
+} 
+$address = "fportabella@igelephant.com";
+if(mail($address, $subject, $msg, $headers)) {
+	$enviado=1
+} 
+$address = "aferre@igelephant.com";
+if(mail($address, $subject, $msg, $headers)) {
+	$enviado=1
+} 
+
+if($enviado==1) {
 
 	// Email has sent successfully, echo an error message.
 	echo '<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button><p>Gracias <strong>'.$name.'</strong>, hemos recibido tu mensaje. En breve te responderemos.</p></div>';
