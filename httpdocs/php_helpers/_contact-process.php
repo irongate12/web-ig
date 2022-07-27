@@ -115,4 +115,5 @@ if($enviado==1) {
 else {
 	// Email has NOT been sent successfully, echo an error message.
 	echo '<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button><div class="alert alert-danger"><strong>¡ERROR!</strong> El mensaje no se ha enviado correctamente. Prueba de nuevo.</div>';
-}
+} 
+?>
