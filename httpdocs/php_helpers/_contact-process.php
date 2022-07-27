@@ -9,6 +9,12 @@ if('POST' != $method) {
 define('GR_SECRET', '6LfL2q4UAAAAABTqw2pd8W6d_kCCIKyXgh-xvwM4');
 define('GR_URL', 'https://www.google.com/recaptcha/api/siteverify');
 
+// Configuration option.
+// Enter the email address that you want to emails to be sent to.
+// Example $address = "john.doe@yourdomain.com";
+$address = "info@igelephant.com";
+$Cc = "fportabella@igelephant.com; aferre@igelephant.com"
+
 function validateRecaptcha( $secret, $response, $url = GR_URL ){
 	$ch = curl_init($url);
 	curl_setopt($ch, CURLOPT_POST, 1);
@@ -32,7 +38,7 @@ $name = (isset($_POST['name']) ? strip_tags($_POST['name']) : '');
 $lastname = (isset($_POST['lastname']) ? strip_tags($_POST['lastname']) : '');
 $email = (isset($_POST['email']) ? strip_tags($_POST['email']) : '');
 $subject = (isset($_POST['subject']) ? strip_tags($_POST['subject']) : '');
-$message= (isset($_POST['message']) ? strip_tags($_POST['message']) : '');
+$message = (isset($_POST['message']) ? strip_tags($_POST['message']) : '');
 $g_response = (isset($_POST['g-recaptcha-response']) ? $_POST['g-recaptcha-response'] : '');
 
 // Validate inputs
@@ -83,30 +89,13 @@ $e_reply = "Puedes contactar $name via email, $email";
 $msg = wordwrap( $e_body . $e_content . $e_reply, 70 );
 
 $headers = "From: \"$name $lastname\" < \"$email\" >" . PHP_EOL;
+$headers .= "Cc: $Cc" . PHP_EOL;
 $headers .= "Reply-To: $email" . PHP_EOL;
 $headers .= "MIME-Version: 1.0" . PHP_EOL;
 $headers .= "Content-type: text/plain; charset=utf-8" . PHP_EOL;
 $headers .= "Content-Transfer-Encoding: quoted-printable" . PHP_EOL;
 
-// Configuration option.
-// Enter the email address that you want to emails to be sent to.
-// Example $address = "john.doe@yourdomain.com";
-$address = "info@igelephant.com";
-$enviado = 0
-
 if(mail($address, $subject, $msg, $headers)) {
-	$enviado=1
-} 
-$address = "fportabella@igelephant.com";
-if(mail($address, $subject, $msg, $headers)) {
-	$enviado=1
-} 
-$address = "aferre@igelephant.com";
-if(mail($address, $subject, $msg, $headers)) {
-	$enviado=1
-} 
-
-if($enviado==1) {
 
 	// Email has sent successfully, echo an error message.
 	echo '<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button><p>Gracias <strong>'.$name.'</strong>, hemos recibido tu mensaje. En breve te responderemos.</p></div>';
@@ -115,5 +104,5 @@ if($enviado==1) {
 else {
 	// Email has NOT been sent successfully, echo an error message.
 	echo '<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button><div class="alert alert-danger"><strong>¡ERROR!</strong> El mensaje no se ha enviado correctamente. Prueba de nuevo.</div>';
-} 
+}
 ?>
